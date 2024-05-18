@@ -1,0 +1,61 @@
+name: CI/CD for Chrome Extension
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+
+            - name: Set up Node.js
+              uses: actions/setup-node@v2
+              with:
+                node-version: 14
+
+            - name: Install dependencies
+              run: npm install
+
+            - name: Build extension
+              run: npm run build
+
+            - name: Archive extension
+              run: zip -r extension.zip dist/*
+
+            - name: Upload extension artifact
+              uses: actions/upload-artifact@v2
+              with:
+                name: extension
+                path: extension.zip
+
+    deploy:
+        needs: build
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+
+            - name: Download extension artifact
+              uses: actions/download-artifact@v2
+              with:
+                name: extension
+
+            - name: Install Chrome
+              uses: browser-actions/setup-chrome@v1
+
+            - name: Load extension
+              uses: browser-actions/load-extension@v1
+              with:
+                path: extension.zip
+
+            - name: Run tests
+              run: npm run test
+
+            - name: Publish extension
+              run: npm run publish

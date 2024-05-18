@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "Hi(gh) Coiny",
+  "version": "1.0",
+  "description": "Shows the Crypto Wealth of LinkedIn Users",
+  "icons": {
+    "16": "images/icon-16.png",
+    "32": "images/icon-32.png",
+    "48": "images/icon-48.png",
+    "128": "images/icon-128.png"
+  },
+  "content_scripts": [
+    {
+      "js": ["scripts/content.js"],
+      "css": ["scripts/contentStyles.css"],
+      "matches": ["https://www.linkedin.com/*"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "images/circle-orange-checkmark.png",
+        "images/hicoiny-logo.png",
+        "/html-templates/crypto-status.html"
+      ],
+      "matches": ["https://www.linkedin.com/*"],
+      "use_dynamic_url": true
+    }
+  ]
+}

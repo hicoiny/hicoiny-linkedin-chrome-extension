@@ -1,0 +1,18 @@
+{
+  "name": "hicoiny-linkedin-chrome-extension",
+  "version": "0.1.0",
+  "description": "A chrome extension to show the Crypto Wealth of LinkedIn Users",
+  "author": "Your Name",
+  "homepage": "https://github.com/your-username/hi-coiny-linkedin-chrome-extension",
+  "scripts": {
+    "test": "echo 'No tests yet'",
+    "publish": "echo 'Not configured for auto publish yet'"
+  },
+  "keywords": [
+    "chrome",
+    "extension",
+    "LinkedIn",
+    "crypto",
+    "wealth"
+  ]
+}
